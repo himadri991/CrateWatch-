@@ -144,3 +144,7 @@ docs/                           Architecture, SLA, runbook, test evidence, and c
 ## Project status
 
 This is a course prototype. A live AWS deployment and Docker build were not run. Review the security and compliance requirements before using it with real shipments.
+
+## Contributors
+
+- Kaunik Chakraborty
