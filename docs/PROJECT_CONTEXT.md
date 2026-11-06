@@ -68,7 +68,7 @@ Out of scope:
 - Screenshots captured from the live dashboard.
 - Terraform stack written for AWS.
 - PPT generated from the assignment structure.
-- Final review, git init, and push are the remaining steps.
+- Local git commit created. Push is pending a GitHub remote URL.
 
 ## Evidence files
 
