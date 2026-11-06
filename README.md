@@ -147,5 +147,4 @@ This is a course prototype. A live AWS deployment and Docker build were not run.
 
 ## Contributors
 
-- Himadri Saha
 - Kaunik Chakraborty
