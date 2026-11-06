@@ -1,0 +1,8 @@
+aws_region         = "ap-south-1"
+project_name       = "cratewatch"
+image_tag          = "latest"
+desired_count      = 1
+demo_mode          = false
+admin_token        = "replace-with-a-long-random-token"
+alert_email        = ""
+allowed_cidr_blocks = ["0.0.0.0/0"]

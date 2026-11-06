@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.env
+data/*.db
+data/*.db-*
+data/*.sqlite
+data/*.sqlite-*
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.*
+infra/terraform/crash.log
+infra/terraform/*.tfvars
+!infra/terraform/terraform.tfvars.example
+
+# Course reference files, not part of the project deliverable
+Cloud computing project.pdf
+Mini_Project_Cloud_AWS_SLA_TTR_PPT_Template.pptx

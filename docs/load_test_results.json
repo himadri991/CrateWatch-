@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-11-06T19:40:27.345Z",
+  "started_at": "2026-11-06T19:40:23.480Z",
+  "target": "http://127.0.0.1:8011",
+  "configuration": {
+    "requests": 1200,
+    "concurrency": 32,
+    "batch_size": 5
+  },
+  "duration_seconds": 3.634,
+  "throughput_requests_per_second": 330.2,
+  "throughput_readings_per_second": 1384.11,
+  "readings_accepted": 5030,
+  "error_rate_pct": 0.0,
+  "status_codes": {
+    "200": 1200
+  },
+  "latency_ms": {
+    "all": {
+      "avg": 80.644,
+      "p50": 71.243,
+      "p95": 121.81,
+      "p99": 257.56,
+      "max": 1061.175
+    },
+    "ingest": {
+      "avg": 81.8,
+      "p50": 75.887,
+      "p95": 120.277,
+      "p99": 125.463,
+      "max": 130.797
+    },
+    "fleet": {
+      "avg": 11.77,
+      "p50": 10.945,
+      "p95": 20.127,
+      "p99": 23.594,
+      "max": 23.739
+    },
+    "sla": {
+      "avg": 156.983,
+      "p50": 37.756,
+      "p95": 947.601,
+      "p99": 1061.175,
+      "max": 1061.175
+    }
+  },
+  "sla_snapshot": {
+    "generated_at": "2026-11-06T19:40:27.113Z",
+    "window_minutes": 15,
+    "targets": {
+      "availability_pct": 99.5,
+      "alert_latency_p95_seconds": 5.0,
+      "api_latency_p95_ms": 300.0,
+      "ttr_s1_minutes": 15.0,
+      "ttr_s2_minutes": 60.0,
+      "ingestion_delay_p95_seconds": 30.0
+    },
+    "observed": {
+      "availability_pct": 100.0,
+      "alert_latency_p95_seconds": null,
+      "api_latency_p95_ms": 120.59,
+      "ttr_s1_p95_seconds": null,
+      "ttr_s2_p95_seconds": null,
+      "ingestion_delay_p95_seconds": 0.084,
+      "open_incidents": 0,
+      "resolved_incidents": 0,
+      "samples_received": 5030,
+      "samples_missing": 0,
+      "api_samples": 1201
+    },
+    "checks": {
+      "availability": "MET",
+      "alert_latency": "NO_DATA",
+      "api_latency": "MET",
+      "ttr_s1": "NO_DATA",
+      "ingestion_delay": "MET"
+    },
+    "overall": "MET",
+    "detail": {
+      "availability": {
+        "availability_pct": 100.0,
+        "samples_received": 5030,
+        "samples_missing": 0,
+        "samples_expected": 5030
+      },
+      "alerts": {
+        "alert_latency_p95_seconds": null,
+        "alert_samples": 0
+      },
+      "ttr_s1": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ttr_s2": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ingestion": {
+        "ingestion_delay_p95_seconds": 0.084,
+        "ingestion_samples": 5030
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      CRATEWATCH_DB: /data/cratewatch.db
+      CRATEWATCH_DEMO_MODE: "true"
+      CRATEWATCH_ADMIN_TOKEN: local-demo-token
+      CRATEWATCH_BACKGROUND_RULES: "true"
+      CRATEWATCH_GAP_THRESHOLD: "10"
+      CRATEWATCH_SLA_WINDOW_MINUTES: "15"
+    volumes:
+      - cratewatch_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=2)",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 15s
+
+  simulator:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command:
+      [
+        "python",
+        "-m",
+        "edge.agent",
+        "--api-url",
+        "http://app:8000",
+        "--buffer",
+        "/edge_data/edge_buffer.db",
+        "--scenario",
+        "mixed",
+        "--interval",
+        "2",
+      ]
+    volumes:
+      - edge_data:/edge_data
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    profiles: ["monitoring"]
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - app
+
+volumes:
+  cratewatch_data:
+  edge_data:

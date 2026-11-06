@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="cratewatch-token" content="{{ admin_token }}">
+  <meta name="cratewatch-demo" content="{{ 'true' if demo_mode else 'false' }}">
+  <title>CrateWatch | Fine art transit assurance</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">CW</div>
+        <div>
+          <div class="brand-name">CrateWatch</div>
+          <div class="brand-line">Fine art transit assurance</div>
+        </div>
+      </div>
+      <div class="shipment">
+        <div class="shipment-route">
+          <span>{{ shipment.origin }}</span>
+          <span class="route-line"></span>
+          <span>{{ shipment.destination }}</span>
+        </div>
+        <div class="shipment-meta">{{ shipment.id }} | {{ shipment.carrier }}</div>
+      </div>
+      <div class="topbar-right">
+        <div class="mode-pill {{ 'demo' if demo_mode else 'prod' }}">
+          <span class="dot"></span>
+          <span>{{ 'Demo environment' if demo_mode else 'Operations' }}</span>
+        </div>
+        <div class="clock" id="clock">--:--:--</div>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <article class="kpi">
+        <div class="kpi-label">Telemetry availability</div>
+        <div class="kpi-value" id="kpi-availability">--</div>
+        <div class="kpi-foot" id="kpi-availability-foot">Target 99.5 percent</div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">Open incidents</div>
+        <div class="kpi-value" id="kpi-open">--</div>
+        <div class="kpi-foot" id="kpi-open-foot">Across six crates</div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">Alert latency P95</div>
+        <div class="kpi-value" id="kpi-alert">--</div>
+        <div class="kpi-foot">Target under 5 seconds</div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">TTR P95, S1</div>
+        <div class="kpi-value" id="kpi-ttr">--</div>
+        <div class="kpi-foot">Target under 15 minutes</div>
+      </article>
+    </section>
+
+    <main class="layout">
+      <section class="left-column">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Shipment fleet</h2>
+              <p>Live condition readings from six instrumented crates</p>
+            </div>
+            <div class="legend">
+              <span><i class="dot ok"></i> OK</span>
+              <span><i class="dot warning"></i> Warning</span>
+              <span><i class="dot critical"></i> Critical</span>
+              <span><i class="dot offline"></i> Offline</span>
+            </div>
+          </div>
+          <div class="crate-grid" id="crate-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Crate history</h2>
+              <p>Temperature and humidity trend for the last 15 minutes</p>
+            </div>
+            <label class="select-label">
+              Crate
+              <select id="crate-select"></select>
+            </label>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="history-chart" height="260"></canvas>
+            <div class="chart-empty" id="chart-empty">Waiting for telemetry</div>
+          </div>
+          <div class="chart-legend">
+            <span><i class="line temp"></i> Temperature, 14 to 28 C</span>
+            <span><i class="line humidity"></i> Humidity, 30 to 70 percent</span>
+            <span><i class="band"></i> Safe temperature band</span>
+          </div>
+        </section>
+      </section>
+
+      <aside class="right-column">
+        <section class="panel incidents-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Incident queue</h2>
+              <p>Open and acknowledged events</p>
+            </div>
+            <button class="ghost-button" id="refresh-button" type="button">Refresh</button>
+          </div>
+          <div class="incident-list" id="incident-list">
+            <div class="empty-state">No active incidents</div>
+          </div>
+        </section>
+
+        {% if demo_mode %}
+        <section class="panel demo-panel" id="demo-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Demo controls</h2>
+              <p>Inject a condition breach and run the recovery flow</p>
+            </div>
+          </div>
+          <div class="demo-grid">
+            <button type="button" data-breach="shock">Shock 12.4 g</button>
+            <button type="button" data-breach="heat">Heat 27.8 C</button>
+            <button type="button" data-breach="humidity">Humidity 68 percent</button>
+            <button type="button" data-breach="door">Door open</button>
+            <button type="button" data-breach="battery">Battery 14 percent</button>
+            <button type="button" class="danger" id="reset-button">Reset demo data</button>
+          </div>
+          <p class="demo-note">These controls are disabled when demo mode is off.</p>
+        </section>
+        {% endif %}
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>SLA status</h2>
+              <p>Rolling 15 minute window</p>
+            </div>
+            <span class="overall-pill" id="overall-pill">--</span>
+          </div>
+          <div class="sla-table" id="sla-table"></div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Cloud Computing mini project | CrateWatch</span>
+      <span class="footer-links">
+        <a href="/api/sla">SLA JSON</a>
+        <a href="/metrics">Metrics</a>
+        <a href="/api/export/incidents.csv">Incident CSV</a>
+        <a href="/api/export/telemetry.csv">Telemetry CSV</a>
+      </span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{
+  "generated_at": "2026-11-06T19:40:53.778Z",
+  "scenario": "application process terminated and restarted",
+  "failed_at": "2026-11-06T19:40:51.158Z",
+  "detected_at": "2026-11-06T19:40:51.293Z",
+  "healthy_at": "2026-11-06T19:40:53.773Z",
+  "timings_seconds": {
+    "detection": 0.135,
+    "recovery": 2.48,
+    "rto": 2.48,
+    "total_downtime": 2.615
+  },
+  "verification": {
+    "health_ok": true,
+    "marker_reading_present_after_restart": true,
+    "crate_status": "OK",
+    "passed": true
+  },
+  "sla_before": {
+    "generated_at": "2026-11-06T19:40:51.158Z",
+    "window_minutes": 15,
+    "targets": {
+      "availability_pct": 99.5,
+      "alert_latency_p95_seconds": 5.0,
+      "api_latency_p95_ms": 300.0,
+      "ttr_s1_minutes": 15.0,
+      "ttr_s2_minutes": 60.0,
+      "ingestion_delay_p95_seconds": 30.0
+    },
+    "observed": {
+      "availability_pct": 100.0,
+      "alert_latency_p95_seconds": null,
+      "api_latency_p95_ms": 2.254,
+      "ttr_s1_p95_seconds": null,
+      "ttr_s2_p95_seconds": null,
+      "ingestion_delay_p95_seconds": 0.003,
+      "open_incidents": 0,
+      "resolved_incidents": 0,
+      "samples_received": 6,
+      "samples_missing": 0,
+      "api_samples": 2
+    },
+    "checks": {
+      "availability": "MET",
+      "alert_latency": "NO_DATA",
+      "api_latency": "MET",
+      "ttr_s1": "NO_DATA",
+      "ingestion_delay": "MET"
+    },
+    "overall": "MET",
+    "detail": {
+      "availability": {
+        "availability_pct": 100.0,
+        "samples_received": 6,
+        "samples_missing": 0,
+        "samples_expected": 6
+      },
+      "alerts": {
+        "alert_latency_p95_seconds": null,
+        "alert_samples": 0
+      },
+      "ttr_s1": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ttr_s2": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ingestion": {
+        "ingestion_delay_p95_seconds": 0.003,
+        "ingestion_samples": 6
+      }
+    }
+  },
+  "sla_after": {
+    "generated_at": "2026-11-06T19:40:53.778Z",
+    "window_minutes": 15,
+    "targets": {
+      "availability_pct": 99.5,
+      "alert_latency_p95_seconds": 5.0,
+      "api_latency_p95_ms": 300.0,
+      "ttr_s1_minutes": 15.0,
+      "ttr_s2_minutes": 60.0,
+      "ingestion_delay_p95_seconds": 30.0
+    },
+    "observed": {
+      "availability_pct": 100.0,
+      "alert_latency_p95_seconds": null,
+      "api_latency_p95_ms": 1.384,
+      "ttr_s1_p95_seconds": null,
+      "ttr_s2_p95_seconds": null,
+      "ingestion_delay_p95_seconds": 0.003,
+      "open_incidents": 0,
+      "resolved_incidents": 0,
+      "samples_received": 6,
+      "samples_missing": 0,
+      "api_samples": 3
+    },
+    "checks": {
+      "availability": "MET",
+      "alert_latency": "NO_DATA",
+      "api_latency": "MET",
+      "ttr_s1": "NO_DATA",
+      "ingestion_delay": "MET"
+    },
+    "overall": "MET",
+    "detail": {
+      "availability": {
+        "availability_pct": 100.0,
+        "samples_received": 6,
+        "samples_missing": 0,
+        "samples_expected": 6
+      },
+      "alerts": {
+        "alert_latency_p95_seconds": null,
+        "alert_samples": 0
+      },
+      "ttr_s1": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ttr_s2": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ingestion": {
+        "ingestion_delay_p95_seconds": 0.003,
+        "ingestion_samples": 6
+      }
+    }
+  }
+}

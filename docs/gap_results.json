@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-11-06T19:43:39.728Z",
+  "scenario": "API outage with edge store-and-forward, then gap detection after recovery",
+  "app_stopped_at": "2026-11-06T19:43:34.733Z",
+  "agent_stopped_at": "2026-11-06T19:43:36.688Z",
+  "app_healthy_at": "2026-11-06T19:43:37.164Z",
+  "agent_started_at": "2026-11-06T19:43:39.201Z",
+  "detected_at": "2026-11-06T19:43:38.980Z",
+  "timings_seconds": {
+    "app_down": 2.431,
+    "agent_down": 2.513,
+    "gap_detected_after_app_restart": 1.816,
+    "ttr": 0.743
+  },
+  "buffer": {
+    "readings_buffered_during_outage": 6,
+    "buffered_readings_found_after_restart": 6,
+    "pending_after_flush": 0,
+    "data_loss_readings": 0
+  },
+  "telemetry": {
+    "rows_before_outage": 6,
+    "rows_after_resume": 18,
+    "rows_added": 12
+  },
+  "incident": {
+    "id": 6,
+    "severity": "S3",
+    "rule_id": "TELEMETRY_GAP",
+    "detected_at": "2026-11-06T19:43:38.980Z",
+    "resolved_at": "2026-11-06T19:43:39.723Z",
+    "ttr_seconds": 0.743
+  },
+  "sla_snapshot": {
+    "generated_at": "2026-11-06T19:43:39.727Z",
+    "window_minutes": 15,
+    "targets": {
+      "availability_pct": 99.5,
+      "alert_latency_p95_seconds": 5.0,
+      "api_latency_p95_ms": 300.0,
+      "ttr_s1_minutes": 15.0,
+      "ttr_s2_minutes": 60.0,
+      "ingestion_delay_p95_seconds": 30.0
+    },
+    "observed": {
+      "availability_pct": 42.857,
+      "alert_latency_p95_seconds": 4.362,
+      "api_latency_p95_ms": 5.236,
+      "ttr_s1_p95_seconds": null,
+      "ttr_s2_p95_seconds": null,
+      "ingestion_delay_p95_seconds": 3.751,
+      "open_incidents": 5,
+      "resolved_incidents": 1,
+      "samples_received": 18,
+      "samples_missing": 24,
+      "api_samples": 9
+    },
+    "checks": {
+      "availability": "NOT_MET",
+      "alert_latency": "MET",
+      "api_latency": "MET",
+      "ttr_s1": "NO_DATA",
+      "ingestion_delay": "MET"
+    },
+    "overall": "NOT_MET",
+    "detail": {
+      "availability": {
+        "availability_pct": 42.857,
+        "samples_received": 18,
+        "samples_missing": 24,
+        "samples_expected": 42
+      },
+      "alerts": {
+        "alert_latency_p95_seconds": 4.362,
+        "alert_samples": 6
+      },
+      "ttr_s1": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ttr_s2": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ingestion": {
+        "ingestion_delay_p95_seconds": 3.751,
+        "ingestion_samples": 18
+      }
+    }
+  },
+  "verification": {
+    "gap_detected": true,
+    "buffer_flushed": true,
+    "no_buffered_data_lost": true,
+    "passed": true
+  }
+}

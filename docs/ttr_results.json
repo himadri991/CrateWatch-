@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-11-06T19:40:16.097Z",
+  "scenario": "condition breach and operator recovery",
+  "api_url": "http://127.0.0.1:8000",
+  "crate_id": "CW-03",
+  "breach_kind": "shock",
+  "incident": {
+    "id": 1,
+    "rule_id": "SHOCK_LIMIT",
+    "severity": "S1",
+    "title": "Shock limit exceeded",
+    "status": "RESOLVED",
+    "event_ts": "2026-11-06T19:40:12.054Z",
+    "detected_at": "2026-11-06T19:40:12.054Z",
+    "ack_at": "2026-11-06T19:40:14.073Z",
+    "resolved_at": "2026-11-06T19:40:16.085Z",
+    "threshold": "8.0 g",
+    "breach_value": 12.4
+  },
+  "timings_seconds": {
+    "detection": 0.0,
+    "diagnosis": 2.019,
+    "recovery": 2.012,
+    "verification": 0.011,
+    "ttr": 4.031,
+    "event_to_verification": 4.042
+  },
+  "verification": {
+    "started_at": "2026-11-06T19:40:16.087Z",
+    "finished_at": "2026-11-06T19:40:16.096Z",
+    "health_ok": true,
+    "incident_resolved": true,
+    "crate_status": "OK",
+    "passed": true
+  },
+  "sla_snapshot": {
+    "generated_at": "2026-11-06T19:40:16.096Z",
+    "window_minutes": 15,
+    "targets": {
+      "availability_pct": 99.5,
+      "alert_latency_p95_seconds": 5.0,
+      "api_latency_p95_ms": 300.0,
+      "ttr_s1_minutes": 15.0,
+      "ttr_s2_minutes": 60.0,
+      "ingestion_delay_p95_seconds": 30.0
+    },
+    "observed": {
+      "availability_pct": 100.0,
+      "alert_latency_p95_seconds": 0.0,
+      "api_latency_p95_ms": 9.338,
+      "ttr_s1_p95_seconds": 4.031,
+      "ttr_s2_p95_seconds": null,
+      "ingestion_delay_p95_seconds": 0.012,
+      "open_incidents": 0,
+      "resolved_incidents": 1,
+      "samples_received": 19,
+      "samples_missing": 0,
+      "api_samples": 61
+    },
+    "checks": {
+      "availability": "MET",
+      "alert_latency": "MET",
+      "api_latency": "MET",
+      "ttr_s1": "MET",
+      "ingestion_delay": "MET"
+    },
+    "overall": "MET",
+    "detail": {
+      "availability": {
+        "availability_pct": 100.0,
+        "samples_received": 19,
+        "samples_missing": 0,
+        "samples_expected": 19
+      },
+      "alerts": {
+        "alert_latency_p95_seconds": 0.0,
+        "alert_samples": 1
+      },
+      "ttr_s1": {
+        "ttr_p95_seconds": 4.031,
+        "ttr_avg_seconds": 4.031,
+        "ack_p95_seconds": 2.019,
+        "recovery_p95_seconds": 2.012,
+        "resolved_count": 1
+      },
+      "ttr_s2": {
+        "ttr_p95_seconds": null,
+        "ttr_avg_seconds": null,
+        "ack_p95_seconds": null,
+        "recovery_p95_seconds": null,
+        "resolved_count": 0
+      },
+      "ingestion": {
+        "ingestion_delay_p95_seconds": 0.012,
+        "ingestion_samples": 19
+      }
+    }
+  }
+}
