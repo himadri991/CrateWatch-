@@ -5,4 +5,5 @@ desired_count      = 1
 demo_mode          = false
 admin_token        = "replace-with-a-long-random-token"
 alert_email        = ""
-allowed_cidr_blocks = ["0.0.0.0/0"]
+# Add a trusted IP or network before applying Terraform. Empty means no ALB ingress.
+allowed_cidr_blocks = []

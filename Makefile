@@ -1,4 +1,4 @@
-.PHONY: install run simulate simulate-shock simulate-mixed test load ttr gap report ppt style terraform-check clean
+.PHONY: install run simulate simulate-shock simulate-mixed test load ttr gap report style terraform-check clean
 
 install:
 	python3 -m venv .venv
@@ -30,9 +30,6 @@ gap:
 
 report:
 	.venv/bin/python scripts/sla_report.py
-
-ppt:
-	.venv/bin/python scripts/generate_ppt.py
 
 style:
 	.venv/bin/python scripts/style_check.py

@@ -13,7 +13,7 @@ Use this checklist before submitting the report, comments, README, or PPT.
 
 ## Punctuation and symbols
 
-- Do not use em dashes. Use a comma, a colon, parentheses, or a new sentence.
+- Do not use U+2014. Use a comma, a colon, parentheses, or a new sentence.
 - Do not use en dashes in ranges. Use "to": "15 to 25 C".
 - Do not use emojis, checkmarks, or decorative icons in the report or PPT.
 - Use straight quotes in code and JSON. Use normal text quotes in prose.
@@ -109,10 +109,6 @@ Run the style checker before submission:
 make style
 ```
 
-Search for em dashes manually if needed:
-
-```bash
-grep -RIn "—" README.md docs app edge scripts tests infra docker
-```
+Search the project for U+2014 in an editor before submission.
 
 Read the PPT out loud once. If a slide sounds like a brochure, rewrite it with a number, a file name, or a concrete action.

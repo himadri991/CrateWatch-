@@ -35,6 +35,13 @@
       </div>
     </header>
 
+    <section class="page-intro" aria-label="Dashboard overview">
+      <div class="intro-copy">
+        <h1>Shipment monitoring</h1>
+        <p>Live condition readings and incident status for six simulated crates.</p>
+      </div>
+    </section>
+
     <section class="kpi-grid">
       <article class="kpi">
         <div class="kpi-label">Telemetry availability</div>
@@ -88,7 +95,7 @@
             </label>
           </div>
           <div class="chart-wrap">
-            <canvas id="history-chart" height="260"></canvas>
+            <canvas id="history-chart" height="240" role="img" aria-label="Temperature and humidity readings over the last 15 minutes"></canvas>
             <div class="chart-empty" id="chart-empty">Waiting for telemetry</div>
           </div>
           <div class="chart-legend">

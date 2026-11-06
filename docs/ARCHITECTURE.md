@@ -137,7 +137,7 @@ The API cannot serve or store data. The ALB health check fails and the task is r
 
 ## Security boundaries
 
-- The ALB is the only public entry point.
+- The ALB is the only internet-facing component when trusted CIDRs are configured. The Terraform default allows no inbound CIDRs.
 - The ECS task runs with a dedicated execution role and task role.
 - The task role can write to the evidence bucket and publish to the alert topic.
 - The admin token is stored in Secrets Manager and injected into the task.

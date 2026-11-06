@@ -160,6 +160,8 @@ function renderCrates(crates) {
       return `
         <article class="crate-card ${crate.id === state.selectedCrate ? "selected" : ""}" data-crate="${escapeHtml(
           crate.id
+        )}" role="button" tabindex="0" aria-pressed="${crate.id === state.selectedCrate}" aria-label="${escapeHtml(
+          `${crate.id}, ${crate.artwork}, ${status}`
         )}">
           <div class="crate-top">
             <span class="crate-id">${escapeHtml(crate.id)}</span>
@@ -195,11 +197,19 @@ function renderCrates(crates) {
     .join("");
 
   grid.querySelectorAll(".crate-card").forEach((card) => {
-    card.addEventListener("click", () => {
+    const selectCrate = () => {
       state.selectedCrate = card.dataset.crate;
       crateSelect.value = state.selectedCrate;
       renderCrates(state.fleet ? state.fleet.crates : []);
       refreshChart();
+    };
+
+    card.addEventListener("click", selectCrate);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectCrate();
+      }
     });
   });
 }
@@ -300,7 +310,7 @@ function drawChart(readings) {
   const context = chart.getContext("2d");
   const ratio = window.devicePixelRatio || 1;
   const width = chart.clientWidth;
-  const height = 260;
+  const height = 240;
   chart.width = Math.max(1, Math.round(width * ratio));
   chart.height = Math.round(height * ratio);
   context.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -332,14 +342,14 @@ function drawChart(readings) {
     (1 - (Math.min(humidityMax, Math.max(humidityMin, value)) - humidityMin) / (humidityMax - humidityMin)) *
       plotHeight;
 
-  context.fillStyle = "rgba(45, 212, 191, 0.10)";
+  context.fillStyle = "rgba(40, 82, 118, 0.075)";
   const bandTop = yForTemp(25);
   const bandBottom = yForTemp(15);
   context.fillRect(padding.left, bandTop, plotWidth, bandBottom - bandTop);
 
-  context.strokeStyle = "#1c2b45";
+  context.strokeStyle = "#e7e3db";
   context.lineWidth = 1;
-  context.fillStyle = "#7f93b3";
+  context.fillStyle = "#7b817f";
   context.font = '10px "SFMono-Regular", Menlo, monospace';
   context.textAlign = "right";
   context.textBaseline = "middle";
@@ -360,7 +370,7 @@ function drawChart(readings) {
   });
 
   context.lineWidth = 2;
-  context.strokeStyle = "#2dd4bf";
+  context.strokeStyle = "#285276";
   context.beginPath();
   readings.forEach((reading, index) => {
     const x = xFor(times[index]);
@@ -374,7 +384,7 @@ function drawChart(readings) {
   context.stroke();
 
   context.lineWidth = 1.6;
-  context.strokeStyle = "#f5b544";
+  context.strokeStyle = "#a85734";
   context.beginPath();
   readings.forEach((reading, index) => {
     const x = xFor(times[index]);
@@ -389,16 +399,16 @@ function drawChart(readings) {
 
   const last = readings[readings.length - 1];
   const lastX = xFor(times[times.length - 1]);
-  context.fillStyle = "#2dd4bf";
+  context.fillStyle = "#285276";
   context.beginPath();
   context.arc(lastX, yForTemp(last.temp_c), 3, 0, Math.PI * 2);
   context.fill();
-  context.fillStyle = "#f5b544";
+  context.fillStyle = "#a85734";
   context.beginPath();
   context.arc(lastX, yForHumidity(last.humidity_pct), 2.7, 0, Math.PI * 2);
   context.fill();
 
-  context.fillStyle = "#7f93b3";
+  context.fillStyle = "#7b817f";
   context.textBaseline = "top";
   context.textAlign = "left";
   const firstLabel = new Date(times[0]).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });

@@ -10,14 +10,13 @@ Use case: Real time condition monitoring and SLA control for high value art ship
 
 Project name: CrateWatch.
 
-The original assignment asked for an industry cloud application with SLA, TTR, AWS, Docker, and virtualization. Most student projects choose food delivery, healthcare appointment booking, or generic cold chain. This project picks fine art transport because the evidence problem is specific and the recovery workflow is easy to measure.
+The assignment asks for an industry cloud application with SLA, TTR, AWS, Docker, and virtualization. CrateWatch uses fine art transport as its logistics case. The project measures how the system records a condition breach and handles recovery.
 
-## Why this problem is uncommon
+## Problem context
 
-- Fine art logistics has a real insurance and chain of custody problem, but it is rarely used as a cloud computing case study.
-- The product is not a generic sensor dashboard. It connects condition breaches to an incident lifecycle, a recovery target, and an audit trail.
-- The edge gateway has a clear reason to buffer data. A crate can move through tunnels, basements, and remote roads where the network drops.
-- The SLA is tied to a business event. A missed shock alert can damage an irreplaceable object and trigger a claim dispute.
+- A shock, temperature excursion, or open door can happen between pickup and delivery checks.
+- The edge agent stores readings locally when the network drops, then sends them in sequence after service returns.
+- Each threshold breach opens an incident with a severity and recovery timestamp.
 
 ## Users
 
@@ -65,10 +64,10 @@ Out of scope:
 - Working local app with dashboard and API.
 - 25 automated tests passing.
 - TTR, load, RTO, and edge buffer scenarios measured.
-- Screenshots captured from the live dashboard.
+- Dashboard screenshots were removed from the public repository.
 - Terraform stack written for AWS.
-- PPT generated from the assignment structure.
-- Local git commit created. Push is pending a GitHub remote URL.
+- The presentation follows the assignment structure and is kept in the local workspace.
+- The presentation PDF stays out of the public repository.
 
 ## Evidence files
 
@@ -78,17 +77,13 @@ Out of scope:
 - `docs/rto_results.json`: process termination and recovery.
 - `docs/gap_results.json`: API outage, edge buffering, and data integrity.
 - `docs/sla_snapshot.json`: live SLA snapshot from the local app.
-- `docs/dashboard.png`: dashboard with the six crate fleet.
-- `docs/incident_dashboard.png`: dashboard with an open S1 incident.
 
 ## Next steps
 
-1. Add team names and roll numbers to the README and PPT.
-2. Push the repository to GitHub and replace the placeholder URL in the PPT.
-3. If AWS access is available, run the Terraform stack and capture the deployed application screenshot.
-4. If Docker is installed, run the Compose stack and capture the container build evidence.
-5. Review the writing guide in `docs/notes/WRITING_GUIDE.md` before submitting the report.
+1. Run the Terraform stack in AWS and capture deployment evidence.
+2. Run the Compose stack on a machine with Docker and record the build output.
+3. Review the writing guide in `docs/notes/WRITING_GUIDE.md` before submitting the report.
 
 ## Writing style
 
-The report, comments, and slides avoid em dashes and common AI writing markers. The style guide lists the specific patterns to check. Keep sentences direct, use concrete numbers, and remove any phrase that sounds like a generic product brochure.
+The report and slides use direct sentences and project-specific evidence. Keep measured values tied to their source and state when a result comes from a local simulation.

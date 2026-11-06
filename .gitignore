@@ -4,6 +4,15 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.db
+*.sqlite*
+*.log
 data/*.db
 data/*.db-*
 data/*.sqlite
@@ -14,6 +23,13 @@ infra/terraform/*.tfstate.*
 infra/terraform/crash.log
 infra/terraform/*.tfvars
 !infra/terraform/terraform.tfvars.example
+
+# Local agent tools and private presentation exports
+.opencode/
+.agents/
+output/pdf/
+CrateWatch_Mini_Project.pptx
+scripts/generate_ppt.py
 
 # Course reference files, not part of the project deliverable
 Cloud computing project.pdf

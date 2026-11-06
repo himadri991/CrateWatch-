@@ -61,7 +61,7 @@ Edit `terraform.tfvars`:
 - Set `admin_token` to a long random value. Do not commit this file.
 - Set `alert_email` if you want SNS email alerts.
 - Keep `demo_mode = false` for a public deployment.
-- Restrict `allowed_cidr_blocks` to your IP range if possible.
+- Set `allowed_cidr_blocks` to a trusted network, such as your current IP with a `/32` suffix. The example defaults to an empty list, so the load balancer accepts no inbound traffic until you set it.
 - Leave `image_tag` at `latest` for the first deploy, then pin a version for later releases.
 
 ## 2. Create the ECR repository first
@@ -225,7 +225,7 @@ The ECR repository has `force_delete = true`, so destroy removes the repository 
 
 ## Security notes
 
-- The ALB is public. Restrict `allowed_cidr_blocks` to the demo network when possible.
+- The ALB uses HTTP. The example has no ingress rule until you add trusted CIDRs. Add ACM and TLS before public use.
 - The admin token is stored in Secrets Manager and injected into the task. Do not put it in the image or the repository.
 - S3 public access is blocked. The task role can write only to the evidence bucket prefix.
 - The task role can publish to the SNS topic and read the admin secret. Keep the policy scoped to those resources.

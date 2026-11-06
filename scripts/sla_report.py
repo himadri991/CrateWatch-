@@ -256,7 +256,6 @@ def build_report(args):
                 "make load",
                 "make gap",
                 "make report",
-                "make ppt",
                 "make style",
                 "make terraform-check",
                 "```",

@@ -41,9 +41,9 @@ variable "alert_email" {
 }
 
 variable "allowed_cidr_blocks" {
-  description = "CIDR blocks allowed to reach the load balancer"
+  description = "Trusted CIDR blocks allowed to reach the load balancer"
   type        = list(string)
-  default     = ["0.0.0.0/0"]
+  default     = []
 }
 
 variable "vpc_cidr" {

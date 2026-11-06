@@ -6,7 +6,16 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXCLUDED_DIRS = {".venv", "data", "__pycache__", ".pytest_cache", ".git"}
+EXCLUDED_DIRS = {
+    ".venv",
+    ".opencode",
+    ".agents",
+    "data",
+    "output",
+    "__pycache__",
+    ".pytest_cache",
+    ".git",
+}
 EXCLUDED_FILES = {
     Path("docs/notes/WRITING_GUIDE.md"),
     Path("scripts/style_check.py"),

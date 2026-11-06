@@ -1,14 +1,14 @@
 # CrateWatch
 
-CrateWatch is a cloud pipeline for condition monitoring and SLA control during fine art transport. It tracks temperature, humidity, shock, door state, and battery level inside instrumented crates. When a shipment breaches its agreed limits, the platform opens an incident, alerts the registrar and courier, records the recovery timeline, and keeps an audit trail for insurers.
+CrateWatch is a condition-monitoring prototype for fine art shipments. It records temperature, humidity, shock, door state, and battery readings for six simulated crates. Threshold rules open incidents, and the API records acknowledgement and resolution times for SLA and TTR reporting.
 
 This project was built for the Cloud Computing mini project. It covers AWS, Docker, virtualization, SLA, and TTR, with a working local demo and a measured test report.
 
+Repository: <https://github.com/himadri991/CrateWatch->
+
 ## Why this problem
 
-Fine art shipments are high value and irreplaceable. Most condition reports are still paper based and are checked only at pickup and delivery. If a crate is dropped, exposed to heat, or opened in transit, the damage may be discovered days later. Insurers then dispute when and where the damage happened.
-
-CrateWatch addresses that gap with a narrow, measurable pipeline. It is not a generic cold chain product. It is built around the evidence and recovery needs of museum registrars, art couriers, galleries, and insurers.
+Condition checks at pickup and delivery leave long gaps during transport. A shock, heat spike, or open door may go unrecorded until arrival. CrateWatch keeps a timestamped record during transit and links a breached reading to an incident and its recovery time.
 
 ## What the system does
 
@@ -40,7 +40,7 @@ The local prototype runs the same application code without AWS. The Terraform st
 
 ## Measured results
 
-These numbers come from the local runtime on an Apple M2 machine. The full evidence is in [docs/TEST_EVIDENCE.md](docs/TEST_EVIDENCE.md).
+These numbers come from local runs on an Apple M2 machine. They are not AWS deployment measurements. The full evidence is in [docs/TEST_EVIDENCE.md](docs/TEST_EVIDENCE.md).
 
 | Item | Result |
 | --- | --- |
@@ -56,7 +56,9 @@ These numbers come from the local runtime on an Apple M2 machine. The full evide
 | RTO after process termination | 2.48 s |
 | Edge buffer recovery | 6 readings buffered, 6 recovered, 0 lost |
 
-The SLA endpoint is heavier than the other endpoints because it aggregates the rolling window. Under the synthetic load test its P95 reached 947.60 ms. The dashboard polls it every two seconds, so normal dashboard traffic does not hit that case. This is listed as a limitation and a tuning target.
+The load run also measured P95 latency of 947.60 ms for `/api/sla`, above its 300 ms target. Other API requests met the target in that run. The report records this as a query optimization task.
+
+The SLA endpoint aggregates the rolling window. Its P95 reached 947.60 ms under synthetic load. The dashboard polls it every two seconds. Caching or pre-aggregation is needed before increasing that polling rate.
 
 ## Quick start
 
@@ -81,7 +83,6 @@ make ttr
 make load
 make gap
 make report
-make ppt
 make style
 make terraform-check
 ```
@@ -128,7 +129,6 @@ docker/                         Dockerfile, Compose file, and Docker ignore rule
 infra/terraform/                AWS infrastructure as code
 infra/monitoring/               Prometheus scrape configuration
 docs/                           Architecture, SLA, runbook, test evidence, and context notes
-CrateWatch_Mini_Project.pptx    Final 16-slide presentation
 ```
 
 ## Limitations
@@ -141,14 +141,6 @@ CrateWatch_Mini_Project.pptx    Final 16-slide presentation
 - The SLA aggregate endpoint needs caching or a pre-aggregated table before it can handle sustained dashboard polling at high load.
 - The local demo uses simulated sensor data. Real deployments need calibrated sensors and a device provisioning process.
 
-## Team
+## Project status
 
-- Team member 1, roll number
-- Team member 2, roll number
-- Team member 3, roll number
-
-Update this section before submission.
-
-## License
-
-Academic project. Not intended for production use without a security and compliance review.
+This is a course prototype. A live AWS deployment and Docker build were not run. Review the security and compliance requirements before using it with real shipments.
